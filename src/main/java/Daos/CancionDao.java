@@ -39,14 +39,25 @@ public class CancionDao {
         return listaRecomendados;
     }
 
-    public ArrayList<Cancion> listarCanciones() {
+    public ArrayList<Cancion> listarCanciones(int opcion) {
+        //Opcion = 1 -> listar canciones
+        //opcion != 1 -> listar canciones por banda
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         ArrayList<Cancion> listaCanciones = new ArrayList<>();
-        String query = "select * from cancion";
+
+        String query1 = "select * from cancion";
+        String query2 = "select * from cancion order by banda";
+        String query;
+        if (opcion == 1) {
+            query = query1;
+        } else {
+            query = query2;
+        }
+
         try (Connection conn = DriverManager.getConnection(url, user, pass);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
