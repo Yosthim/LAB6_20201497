@@ -3,12 +3,12 @@ package Beans;
 public class Cancion {
     int idcancion;
     String nombre_cancion;
-    String banda;
+    String idBanda;
 
-    public Cancion(int idcancion, String nombre_cancion, String banda) {
+    public Cancion(int idcancion, String nombre_cancion, String idBanda) {
         this.idcancion = idcancion;
         this.nombre_cancion = nombre_cancion;
-        this.banda = banda;
+        this.idBanda = idBanda;
     }
 
     public int getIdcancion() {
@@ -27,11 +27,11 @@ public class Cancion {
         this.nombre_cancion = nombre_cancion;
     }
 
-    public String getBanda() {
-        return banda;
+    public String getIdBanda() {
+        return idBanda;
     }
 
-    public void setBanda(String banda) {
-        this.banda = banda;
+    public void setIdBanda(String idBanda) {
+        this.idBanda = idBanda;
     }
 }

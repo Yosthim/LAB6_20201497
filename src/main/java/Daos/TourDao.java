@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class TourDao {
 
     private static String user = "root";
-    private static String pass = "123456";
+    private static String pass = "root";
     private static String url = "jdbc:mysql://localhost:3306/lab6sw1?serverTimezone=America/Lima";
 
 

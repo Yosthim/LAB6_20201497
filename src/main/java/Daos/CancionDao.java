@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class CancionDao {
     private static String user = "root";
-    private static String pass = "123456";
+    private static String pass = "root";
     private static String url = "jdbc:mysql://localhost:3306/lab6sw1?serverTimezone=America/Lima";
 
     public ArrayList<Cancion> obtenerListaRecomendados(){
@@ -28,15 +28,41 @@ public class CancionDao {
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String nombre = rs.getString(2);
-                String banda = rs.getString(3);
+                String idBanda = rs.getString(3);
 
-                listaRecomendados.add(new Cancion(id,nombre,banda));
+                listaRecomendados.add(new Cancion(id,nombre,idBanda));
             }
 
         } catch (SQLException e) {
             System.out.println("No se pudo realizar la busqueda");
         }
         return listaRecomendados;
+    }
+
+    public ArrayList<Cancion> listarCanciones() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        ArrayList<Cancion> listaCanciones = new ArrayList<>();
+        String query = "select * from cancion";
+        try (Connection conn = DriverManager.getConnection(url, user, pass);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String nombre = rs.getString(2);
+                String idBanda = rs.getString(3);
+
+                listaCanciones.add(new Cancion(id,nombre,idBanda));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("No se pudo realizar la busqueda");
+        }
+        return listaCanciones;
     }
 
 }

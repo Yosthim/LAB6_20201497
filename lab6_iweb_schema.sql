@@ -27,11 +27,11 @@ CREATE TABLE `artista` (
   `idartista` int NOT NULL AUTO_INCREMENT,
   `nombre_artista` varchar(30) NOT NULL,
   `instrumento` varchar(3) NOT NULL,
-  `banda` varchar(3) NOT NULL,
+  `idBanda` varchar(3) NOT NULL,
   PRIMARY KEY (`idartista`),
   KEY `fk_artista_instrumento1_idx` (`instrumento`),
-  KEY `fk_artista_banda1_idx` (`banda`),
-  CONSTRAINT `fk_artista_banda1` FOREIGN KEY (`banda`) REFERENCES `banda` (`idbanda`),
+  KEY `fk_artista_banda1_idx` (`idBanda`),
+  CONSTRAINT `fk_artista_banda1` FOREIGN KEY (`idBanda`) REFERENCES `idBanda` (`idbanda`),
   CONSTRAINT `fk_artista_instrumento1` FOREIGN KEY (`instrumento`) REFERENCES `instrumento` (`idinstrumento`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -47,13 +47,13 @@ INSERT INTO `artista` VALUES (1,'Hayley Williams','VOC','PAR'),(2,'Patrick Stump
 UNLOCK TABLES;
 
 --
--- Table structure for table `banda`
+-- Table structure for table `idBanda`
 --
 
-DROP TABLE IF EXISTS `banda`;
+DROP TABLE IF EXISTS `idBanda`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `banda` (
+CREATE TABLE `idBanda` (
   `idbanda` varchar(3) NOT NULL,
   `nombre_banda` varchar(30) NOT NULL,
   `artista_lider` int DEFAULT NULL,
@@ -64,13 +64,13 @@ CREATE TABLE `banda` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `banda`
+-- Dumping data for table `idBanda`
 --
 
-LOCK TABLES `banda` WRITE;
-/*!40000 ALTER TABLE `banda` DISABLE KEYS */;
-INSERT INTO `banda` VALUES ('FOB','Fall Out Boy',2),('GND','Green Day',5),('LPK','Linkin Park',6),('MCR','My Chemical Romance',4),('MRN','Maroon 5',10),('OSS','Oasis',9),('PAD','Panic! at the Disco',3),('PAR','Paramore',1),('RCP','Red Hot Chili Peppers',8),('SPN','Simple Plan',7);
-/*!40000 ALTER TABLE `banda` ENABLE KEYS */;
+LOCK TABLES `idBanda` WRITE;
+/*!40000 ALTER TABLE `idBanda` DISABLE KEYS */;
+INSERT INTO `idBanda` VALUES ('FOB','Fall Out Boy',2),('GND','Green Day',5),('LPK','Linkin Park',6),('MCR','My Chemical Romance',4),('MRN','Maroon 5',10),('OSS','Oasis',9),('PAD','Panic! at the Disco',3),('PAR','Paramore',1),('RCP','Red Hot Chili Peppers',8),('SPN','Simple Plan',7);
+/*!40000 ALTER TABLE `idBanda` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -83,10 +83,10 @@ DROP TABLE IF EXISTS `cancion`;
 CREATE TABLE `cancion` (
   `idcancion` int NOT NULL AUTO_INCREMENT,
   `nombre_cancion` varchar(40) NOT NULL,
-  `banda` varchar(3) NOT NULL,
+  `idBanda` varchar(3) NOT NULL,
   PRIMARY KEY (`idcancion`),
-  KEY `fk_cancion_banda1_idx` (`banda`),
-  CONSTRAINT `fk_cancion_banda1` FOREIGN KEY (`banda`) REFERENCES `banda` (`idbanda`)
+  KEY `fk_cancion_banda1_idx` (`idBanda`),
+  CONSTRAINT `fk_cancion_banda1` FOREIGN KEY (`idBanda`) REFERENCES `idBanda` (`idbanda`)
 ) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -212,10 +212,10 @@ DROP TABLE IF EXISTS `tour`;
 CREATE TABLE `tour` (
   `idtour` int NOT NULL AUTO_INCREMENT,
   `nombre_tour` varchar(30) NOT NULL,
-  `banda` varchar(3) NOT NULL,
+  `idBanda` varchar(3) NOT NULL,
   PRIMARY KEY (`idtour`),
-  KEY `fk_tour_banda1_idx` (`banda`),
-  CONSTRAINT `fk_tour_banda1` FOREIGN KEY (`banda`) REFERENCES `banda` (`idbanda`)
+  KEY `fk_tour_banda1_idx` (`idBanda`),
+  CONSTRAINT `fk_tour_banda1` FOREIGN KEY (`idBanda`) REFERENCES `idBanda` (`idbanda`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
